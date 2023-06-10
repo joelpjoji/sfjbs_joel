@@ -8,10 +8,14 @@ import java.util.List;
 
 @RestController
 public class AppController {
+
+    private final MathOperation  mathOperation;
     @Autowired
-    MathOperation  mathOperation;
+    public AppController(MathOperation mathOperation){
+        this.mathOperation=mathOperation;
+    }
     @GetMapping("/getdata")
-    public String gatApp(@RequestParam("data") String data) {
+    public String getApp(@RequestParam("data") String data) {
         return "My data is: " + data;
     }
 
@@ -26,7 +30,7 @@ public class AppController {
     }
 
     @GetMapping("/getversion/{version}")
-    public String gatversion(@PathVariable String version) {
+    public String getversion(@PathVariable String version) {
         String result=null;
         if (version.equals("v1"))
             result= "version  data is: " + version;
